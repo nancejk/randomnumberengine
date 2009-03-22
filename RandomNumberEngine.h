@@ -4,7 +4,7 @@
 #include <boost/random/uniform_real.hpp>
 #include <boost/random/normal_distribution.hpp>
 #include <boost/random/mersenne_twister.hpp>
-#include <boost/random/uniform_on_sphere.hpp>
+#include <boost/random/uniform_int.hpp>
 #include <vector>
 #include <ctime>
 
@@ -18,8 +18,13 @@ public:
 	const double GetGaussianRandomReal(double, double);
 	//The arguments to the UniformRandomReal method are the min and max of the distribution.
 	const double GetUniformRandomReal(double, double);
-	//The argument to the SphericalSurfaceRandomReal method is the dimension (mathematically) of the sphere.  By default, it is two.
-	const std::vector<double> GetSphericalSurfaceRandomReal(unsigned);
+	//The arguments to the UniformRandomInt method are the min and max of the distribution.
+	const int GetUniformRandomInt(int, int);
+
+	//Members for const correctness.
+	const double GetGaussianRandomReal(double, double) const;
+	const double GetUniformRandomReal(double, double) const;
+	const int GetUniformRandomInt(int, int) const;
 };
 
 #endif

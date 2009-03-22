@@ -25,13 +25,14 @@ const double RandomNumberEngine::GetUniformRandomReal(double min, double max)
 	//Now sample.
 	return rng_sampler();
 }
-const std::vector<double> RandomNumberEngine::GetSphericalSurfaceRandomReal(unsigned dimension=2)
+const int RandomNumberEngine::GetUniformRandomInt(int min, int max)
 {
-	//Build the probability distribution on a sphere of dimension two.
-	boost::uniform_on_sphere<double> sphere(dimension);
+	//Build a uniform probability distribution.
+	boost::uniform_int<> uniform_dist( min, max );
 	
-	//Now bind the random number generator to the distribution, which forms a functor.
-	boost::variate_generator<boost::mt19937&, boost::uniform_on_sphere<double> > rng_sampler(RandomNumberEngine::fRNG, sphere);
+	//Bind the random number generator to the distribution, which forms
+	//a functor.
+	boost::variate_generator<boost::mt19937&, boost::uniform_int<> > rng_sampler(RandomNumberEngine::fRNG, uniform_dist);
 	
 	//Now sample.
 	return rng_sampler();
